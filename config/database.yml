@@ -3,6 +3,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 8 } %>
   host: localhost
+  username: <%= ENV.fetch("POSTGRESQL_USERNAME") %>
+  password: <%= ENV.fetch("POSTGRESQL_PASSWORD") %>
   timeout: 5000
   variables:
     statement_timeout: <%= ENV["DB_STATEMENT_TIMEOUT"] || 120_000 %>

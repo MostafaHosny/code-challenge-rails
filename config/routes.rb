@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+
   get '/healthz' => 'checks#healthz'
 
   # API
+  namespace :api do
+    namespace :v1 do
+      resources :airports, only: [:index]
+    end
+  end
   # TODO: add routes
 
   # Delegate to Vue
