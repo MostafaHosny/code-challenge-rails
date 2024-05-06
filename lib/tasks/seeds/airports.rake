@@ -17,6 +17,7 @@ namespace :seeds do
             .map { |k, v| [k, v == '\\N' ? nil : v] }.to_h
             .with_indifferent_access
             .merge(timestamps)
+            .merge({country_alpha2: ISO3166::Country.find_country_by_any_name(row['country'])&.alpha2})
             .merge(passenger_volume: data_sets[:passenger_volumes_csv].find { |fixup_row| fixup_row['IATA'] == row['iata'] }.to_h['Passengers']&.to_i)
             .slice(*Airport.column_names)
       end.uniq { |row| row[:uid] },

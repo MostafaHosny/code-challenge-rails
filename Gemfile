@@ -44,6 +44,7 @@ gem 'ffaker'
 group :development do
   gem 'annotate'
   gem 'listen'
+  gem 'countries', require: 'countries/global' 
 end
 
 group :test do

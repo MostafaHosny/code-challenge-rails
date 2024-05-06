@@ -1,5 +1,7 @@
 class API::V1::AirportsController < API::V1::BaseController
   def index
-    render json: Airport.last(10)
+    airports = Airport.all
+    airports = airports.by_country_codes(params[:countries]) if params[:countries].present?
+    render json: AirportSerializer.render(airports)
   end
 end
